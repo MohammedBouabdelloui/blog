@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ControllerNavigation;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+
+
+Route::fallback(function(){
+    return view('404');
 });
+
+
+Route::get('/' , [ControllerNavigation::class , 'index'])->name('index');
+Route::get('/contact' , [ControllerNavigation::class , 'contact'])->name('contact');
+Route::get('/author' , [ControllerNavigation::class , 'author'])->name('author');
+Route::get('/about-me' , [ControllerNavigation::class , 'about'])->name('about');
+
