@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('img_path_3')->nullable();
             $table->foreignId('categorie_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('author_id')->nullable()->constrained()->nullOnDelete();
-            $table->boolean('validation',[1,0])->default(0);
-            
+            $table->boolean('validation_post',[1,0])->default(0);
+            $table->softDeletes();
         });
     }
 

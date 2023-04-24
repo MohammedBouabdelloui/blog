@@ -37,7 +37,11 @@
   <meta property="og:updated_time" content="2020-03-15T15:40:24+06:00" />
 </head>
 <body>
-<body>
+<div class="load">
+
+  <div id='loader'>Loading...</div>
+</div>
+<div id='pagecontent' style='display:none'>
   <!-- navigation -->
 <header class="navigation fixed-top">
   <div class="container">
@@ -93,9 +97,17 @@
 <!-- /navigation -->
 
 
+
 <!-- container -->
-    @yield('container')
+
+
+@yield('container')
+
+
+
+
 <!-- /container -->
+
 
 <!-- FOOTER -->
 <footer class="footer">
@@ -156,6 +168,8 @@
 
 <!-- FOOTER -->
     <!-- JS Plugins -->
+</div> 
+
     <script src="{{ asset('plugins/jQuery/jquery.min.js') }}"></script>
 
     <script src="{{ asset('plugins/bootstrap/bootstrap.min.js ') }}"></script>
@@ -165,5 +179,6 @@
     <script src="{{ asset('plugins/instafeed/instafeed.min.js ') }}"></script>
     <!-- Main Script -->
     <script src="{{ asset('js/script.js') }}"></script></body>
+
 </body>
 </html>

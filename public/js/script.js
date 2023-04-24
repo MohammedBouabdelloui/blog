@@ -7,8 +7,11 @@
 
 // Preloader js    
 $(window).on('load', function () {
-	'use strict';
-	$('.preloader').fadeOut(100);
+	
+	$('#loader').hide();
+	$('.load').hide();
+
+	$('#pagecontent').show();
 });
 
 (function ($) {

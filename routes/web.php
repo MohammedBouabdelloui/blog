@@ -21,8 +21,13 @@ Route::fallback(function(){
 });
 
 
-Route::get('/' , [ControllerNavigation::class , 'index'])->name('index');
-Route::get('/contact' , [ControllerNavigation::class , 'contact'])->name('contact');
-Route::get('/author' , [ControllerNavigation::class , 'author'])->name('author');
-Route::get('/about-me' , [ControllerNavigation::class , 'about'])->name('about');
+Route::controller(ControllerNavigation::class)->group(function(){
+    Route::get('/' , 'index')->name('index');
+    Route::get('/contact' ,  'contact')->name('contact');
+    Route::get('/author' , 'author')->name('author');
+    Route::get('/about-me' , 'about')->name('about');
+});
 
+
+Route::view('/post' , 'post-elements');
+Route::view('/sersh' , 'search-result');

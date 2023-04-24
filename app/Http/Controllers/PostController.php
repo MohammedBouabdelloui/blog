@@ -12,7 +12,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = post::get();
+        return view('index' , compact('posts'));
     }
 
     /**
@@ -20,7 +21,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('create_post');
     }
 
     /**
@@ -28,7 +29,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = post::create([
+        'title' => $request->title,
+        'description' =>$request->description,
+        'img_path_1' =>$request->img_1,
+        'img_path_2' =>$request->img_2,
+        'img_path_3' =>$request->img_3,
+        'categorie_id' =>$request->categorie_id,
+        ]);
     }
 
     /**
@@ -42,24 +50,33 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(post $post)
+    public function edit($post_id)
     {
-        //
+        $post = post::findorFail($post_id);
+        return view('edit_post' ,compact('post'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, post $post)
+    public function update(Request $request, $post_id)
     {
-        //
+        $post = post::findorFail('post_id');
+        $post->title = $request->title;
+        $post->description = $request->description;
+        $post->img_path_1 = $request->img_1;
+        $post->img_path_2 = $request->img_2;
+        $post->img_path_3 = $request->img_3;
+        $post->categorie_id = $request->categorie_id;
+        $post->save();
+        return redirect()->route('index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(post $post)
+    public function destroy($post_id)
     {
-        //
+        
     }
 }
