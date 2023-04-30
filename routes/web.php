@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ControllerNavigation;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,8 @@ Route::controller(ControllerNavigation::class)->group(function(){
     Route::get('/contact' ,  'contact')->name('contact');
     Route::get('/author' , 'author')->name('author');
     Route::get('/about-me' , 'about')->name('about');
+    Route::get('/login' , 'login');
+    Route::get('/dashboard' , 'dashboard')->name('dashboard');
 });
 
 
