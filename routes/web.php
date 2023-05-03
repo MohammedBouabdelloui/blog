@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ControllerNavigation;
+use App\Http\Controllers\PostController;
+use App\Models\post;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +23,7 @@ Route::fallback(function(){
     return view('404');
 });
 
+Route::resource('/post' , PostController::class);
 
 Route::controller(ControllerNavigation::class)->group(function(){
     Route::get('/' , 'index')->name('index');
@@ -28,9 +31,16 @@ Route::controller(ControllerNavigation::class)->group(function(){
     Route::get('/author' , 'author')->name('author');
     Route::get('/about-me' , 'about')->name('about');
     Route::get('/login' , 'login');
-    Route::get('/dashboard' , 'dashboard')->name('dashboard');
+   
 });
 
+Route::get('/dashboard' , function(){
+    return view('admin.pages.dashboard');
+})->middleware('auth');
 
-Route::view('/post' , 'post-elements');
+Route::get('/login' , function(){
+    return view('admin.pages.auth-login');
+})->name('login');
+
+//Route::view('/post' , 'post-elements');
 Route::view('/sersh' , 'search-result');

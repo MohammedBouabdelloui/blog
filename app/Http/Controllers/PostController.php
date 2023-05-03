@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\author;
 use App\Models\post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     /**
+     * 
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $posts = post::get();
+    {     
+        $posts = post::paginate(10);
         return view('index' , compact('posts'));
     }
 
@@ -21,7 +23,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('create_post');
+        return view('admin.pages.create-poste');
     }
 
     /**

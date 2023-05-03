@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\post;
 class ControllerNavigation extends Controller
 {
     // In order to go to the index page 
-    public function index(){
-        return view('index');
+   
+    public function index()
+    {     
+        $posts = post::paginate(10);
+        return view('index' , compact('posts'));
     }
-
-
 
     // In order to go to the contact page 
     public function contact(){
