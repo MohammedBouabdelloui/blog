@@ -43,10 +43,12 @@ class PostController extends Controller
 
     /**
      * Display the specified resource.
+     * filter posts a category 
      */
     public function show($id)
     {
         $posts = category::find($id)->posts;
+        
         return view('search-result' ,compact('posts'));
     }
 
@@ -81,14 +83,20 @@ class PostController extends Controller
     {
         
     }
-
+// filter posts a id post 
      public function filter_posts($id){
          $post = post::find($id);
+         $comments = post::find($id)->comments;
          if($post){
-             return view('post-elements' , compact('post'));
+             return view('post-elements' , compact('post','comments'));
          }else{
             return view('404');
          }
      }
     
+// filter posts a author 
+     public function author_filter($id_author){
+        $posts = author::find($id_author)->posts;
+        return view('search-result' ,compact('posts'));
+     }
 }  

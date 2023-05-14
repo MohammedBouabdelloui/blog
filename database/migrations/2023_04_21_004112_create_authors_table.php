@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->string('photo_profile_path')->default('_e1f7704e-fe84-4e51-9230-dc80d024f504');
+            $table->string('photo_profile_path')->default('_e1f7704e-fe84-4e51-9230-dc80d024f504.jpeg');
             $table->string('role')->default('author');
         });
     }

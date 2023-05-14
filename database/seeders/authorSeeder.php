@@ -16,20 +16,20 @@ class authorSeeder extends Seeder
         author::Create([
          'name' => 'mohammed sime' , 
          'email' => 'simoboolz@gmail.com',
-         'password' => 'Simo@2022',
-         'rool' => 'Admin',
+         'password' => bcrypt('Simo@2022'),
+         'role' => 'Admin',
         ]);
 
         author::Create([
             'name' => fake()->name(), 
             'email' => fake()->unique()->email(),
-            'password' => 'Simo@2022',
+            'password' => bcrypt('Simo@2023'),
            ]);
 
         author::Create([
         'name' => fake()->name(), 
         'email' => fake()->unique()->email(),
-        'password' => 'Simo@2022',
+        'password' => bcrypt('Simo@2024'),
         ]);
     }
 }

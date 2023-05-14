@@ -25,18 +25,18 @@ detai post
             </div>
             <h1 class="h2">
             <ul class="card-meta my-3 list-inline">
-               <li class="list-inline-item">
-                  <a href="author-single.html" class="card-meta-author">
-                  <img src="images/john-doe.jpg" alt="John Doe">
-                  <span>John Doe</span>
-                  </a>
-               </li>
+              <li class="list-inline-item">
+                <a href="{{route('author_filter' ,['id_author' =>$post->author->id ])}}" class="card-meta-author">
+                <img src="{{asset('images/author/'.$post->author->photo_profile_path.'')}}" alt="{{$post->author->name}}" >
+                <li class="list-inline-item"><a href="{{route('author_filter' ,['id_author' =>$post->author->id ])}}">{{$post->author->name}}</a></li>
+                </a>
+              </li>
                <li class="list-inline-item">
                   <i class="ti-calendar"></i>{{$post->created_at}}
                </li>
                <li class="list-inline-item">
                   <ul class="card-meta-tag list-inline">
-                     <li class="list-inline-item"><a href="tags.html">Demo</a></li>
+                     <li class="list-inline-item"><a href="{{route('posts.show',$post->category->id)}}">{{$post->category->name}}</a></li>
                   </ul>
                </li>
             </ul>
@@ -63,44 +63,23 @@ detai post
          </article>
          <div class="mt-5">
             <div class="mb-5 border-top mt-4 pt-5">
-               <h3 class="mb-4">Comments</h3>
-               <div class="media d-block d-sm-flex mb-4 pb-4">
+              <h3 class="mb-4">Comments</h3>
+             
+              @forelse($comments as $comment)
+              <div class="media d-block d-sm-flex mb-4 pb-4">
                   <a class="d-inline-block mr-2 mb-3 mb-md-0" href="#">
-                  <img src="{{asset('images/post/user-01.jpg')}}" class="mr-3 rounded-circle" alt="">
+                  <img src="{{asset('images/comments/'.$comment->profile_photo.'')}}" style="width : 70px"  class="mr-3  rounded-circle" alt="profile photo">
                   </a>
                   <div class="media-body">
-                     <a href="#!" class="h4 d-inline-block mb-3">Alexender Grahambel</a>
-                     <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-                     <span class="text-black-800 mr-3 font-weight-600">April 18, 2020 at 6.25 pm</span>
+                     <a href="#!" class="h4 d-inline-block mb-3">{{$comment->name}}</a>
+                     <p>{{$comment->comment}}</p>
+                     <span class="text-black-800 mr-3 font-weight-600">{{$comment->craete_at}}</span>
                   </div>
-               </div>
-               <div class="media d-block d-sm-flex mb-4 pb-4">
-                  <a class="d-inline-block mr-2 mb-3 mb-md-0" href="#">
-                  <img src="{{asset('images/post/user-01.jpg')}}" class="mr-3 rounded-circle" alt="">
-                  </a>
-                  <div class="media-body">
-                     <a href="#!" class="h4 d-inline-block mb-3">Alexender Grahambel</a>
-                     <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-                     <span class="text-black-800 mr-3 font-weight-600">April 18, 2020 at 6.25 pm</span>
-                  </div>
-               </div>
-               <div class="media d-block d-sm-flex mb-4 pb-4">
-                  <a class="d-inline-block mr-2 mb-3 mb-md-0" href="#">
-                  <img src="{{asset('images/post/user-01.jpg')}}" class="mr-3 rounded-circle" alt="">
-                  </a>
-                  <div class="media-body">
-                     <a href="#!" class="h4 d-inline-block mb-3">Alexender Grahambel</a>
-                     <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-                     <span class="text-black-800 mr-3 font-weight-600">April 18, 2020 at 6.25 pm</span>
-                  </div>
-               </div>
-               <div class="media d-block d-sm-flex">
-                  <div class="d-inline-block mr-2 mb-3 mb-md-0" href="#">
-                     <img class="mr-3" src="images/post/arrow.png" alt="">
-                     <a href="#!"><img src="{{asset('images/post/user-02.jpg')}}" class="mr-3 rounded-circle" alt=""></a>
-                  </div>
-                  
-               </div>
+              </div>
+              @empty
+              <p>No comments</p>
+              @endforelse
+              
             </div>
             <div>
                <h3 class="mb-4">Leave a Reply</h3>
@@ -126,15 +105,7 @@ detai post
          </div>
       </div>
       <aside class="col-lg-4 @@sidebar">
-  <!-- Search -->
-  <div class="widget">
-    <h4 class="widget-title"><span>Search</span></h4>
-    <form action="#!" class="widget-search">
-      <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-      <i class="ti-search"></i>
-      <button type="submit" class="btn btn-primary btn-block">Search</button>
-    </form>
-  </div>
+
 
   <!-- about me -->
   <div class="widget widget-about">
