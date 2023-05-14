@@ -61,5 +61,6 @@ Route::view('/sersh' , 'search-result');
 Route::resource('posts' , PostController::class);
 
 Route::get('posts/filter_posts/{id}' , [PostController::class , 'filter_posts'])->name('filter_posts');
+Route::get('posts/author_filter/{id_author}' , [PostController::class , 'author_filter'])->name('author_filter');
 
 Route::resource('/category' ,  CategoryController::class);

@@ -229,9 +229,9 @@
         <h3 class="mb-3"><a class="post-title" href="post-elements.html">{{$post->title}}</a></h3>
         <ul class="card-meta list-inline">
         <li class="list-inline-item">
-            <a href="author-single.html" class="card-meta-author">
+            <a href="{{route('author_filter' ,['id_author' =>$post->author->id ])}}" class="card-meta-author">
             <img src="{{asset('images/author/'.$post->author->photo_profile_path.'')}}" alt="John Doe">
-            <li class="list-inline-item"><a href="tags.html">{{$post->author->name}}</a></li>
+            <li class="list-inline-item"><a href="{{route('author_filter' ,['id_author' =>$post->author->id ])}}">{{$post->author->name}}</a></li>
             </a>
         </li>
 

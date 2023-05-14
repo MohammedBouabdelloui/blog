@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->string('name');
+        Schema::table('comments', function (Blueprint $table) {
+            $table->string('profile_photo')->default('profile_photo.jpeg');
+            
         });
     }
 
@@ -23,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::table('comments', function (Blueprint $table) {
+            $table->dropColumn('profile_photo');
+        });
     }
 };

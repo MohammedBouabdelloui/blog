@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\author;
+use App\Models\category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,15 +19,15 @@ class PostsFactory extends Factory
     public function definition(): array
     {
         return [
-         
+            
             'title' => fake()->unique()->title(),
             'description' => fake()->text(),
             'img_path_1' => 'post-1.jpg' , 
             'img_path_2' => 'post-2.jpg' , 
             'img_path_3' => 'post-3.jpg' ,
-            'categorie_id' => 1, 
-            'author_id' => 1 , 
-            'validation_post' => 1 ,
+            'category_id' => category::all()->random()->id, 
+            'author_id' => author::all()->random()->id , 
+            'validation_post' => rand(0,1) ,
         ];
     }
 }
