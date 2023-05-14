@@ -15,11 +15,11 @@
       <div class="col-lg-9 mx-auto">
         <h1 class="mb-5">What Would You <br> Like To Read Today?</h1>
         <ul class="list-inline widget-list-inline">
-          <li class="list-inline-item"><a href="tags.html">City</a></li>
-          <li class="list-inline-item"><a href="tags.html">Color</a></li>
-          <li class="list-inline-item"><a href="tags.html">Creative</a></li>
-          <li class="list-inline-item"><a href="tags.html">Decorate</a></li>
- 
+        @forelse($categorys as $category )
+          <li class="list-inline-item"><a href="{{route('posts.show',$category->id)}}">{{$category->name}}</a></li>
+        @empty
+        <li class="list-inline-item"><a href="">all</a></li>
+        @endforelse
         </ul>
       </div>
     </div>
@@ -221,17 +221,17 @@
 @forelse($posts as $post)
   <article class="card mb-4">
     <div class="post-slider">
-        <img src="images/post/{{$post->img_path_1}}" class="card-img-top" alt="post-thumb">
-        <img src="images/post/{{$post->img_path_2}}" class="card-img-top" alt="post-thumb">
-        <img src="images/post/{{$post->img_path_3}}" class="card-img-top" alt="post-thumb">
+        <img src="{{ asset('images/post/'.$post->img_path_1.'')}}" class="card-img-top" alt="post-thumb">
+        <img src="{{ asset('images/post/'.$post->img_path_2.'')}}" class="card-img-top" alt="post-thumb">
+        <img src="{{ asset('images/post/'.$post->img_path_3.'')}}" class="card-img-top" alt="post-thumb">
     </div>
     <div class="card-body">
         <h3 class="mb-3"><a class="post-title" href="post-elements.html">{{$post->title}}</a></h3>
         <ul class="card-meta list-inline">
         <li class="list-inline-item">
             <a href="author-single.html" class="card-meta-author">
-            <img src="images/john-doe.jpg" alt="John Doe">
-            <span>John Doe</span>
+            <img src="{{asset('images/author/'.$post->author->photo_profile_path.'')}}" alt="John Doe">
+            <li class="list-inline-item"><a href="tags.html">{{$post->author->name}}</a></li>
             </a>
         </li>
 
@@ -240,20 +240,27 @@
           </li>
         <li class="list-inline-item">
             <ul class="card-meta-tag list-inline">
-            <li class="list-inline-item"><a href="tags.html">Demo</a></li>
-            <li class="list-inline-item"><a href="tags.html">Elements</a></li>
+            
+            <li class="list-inline-item"><a href="{{route('posts.show',$post->category->id)}}">{{$post->category->name}}</a></li>
+
             </ul>
         </li>
         </ul>
-        <p>{{$post->description}}...</p>
-        <a href="post-elements.html" class="btn btn-outline-primary">Read More</a>
+        <p>
+          @php
+            $delimiter = ".";
+            $parts = explode($delimiter, $post->description);
+            echo $parts[0];
+          @endphp
+      </p>
+        <a href="{{route('filter_posts' , ['id'=>$post->id])}}" class="btn btn-outline-primary">Read More</a>
     </div>
   </article>
 
 @empty
-    <p>No users</p>
+    <p>No posts</p>
 @endforelse
-  <ul class="pagination justify-content-center">
+  <!-- <ul class="pagination justify-content-center">
     <li class="page-item page-item active ">
         <a href="#!" class="page-link">1</a>
     </li>
@@ -263,7 +270,9 @@
     <li class="page-item">
         <a href="#!" class="page-link">&raquo;</a>
     </li>
-  </ul>
+  </ul> -->
+  {{ $posts->links() }}
+
 </div>
       <aside class="col-lg-4 @@sidebar">
   <!-- Search -->

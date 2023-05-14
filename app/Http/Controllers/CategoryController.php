@@ -62,4 +62,8 @@ class CategoryController extends Controller
     {
         //
     }
+    // public function filter_posts($id_category){
+    //     $posts = category::find($id_category);
+    //     dd($posts->posts);
+    // }
 }

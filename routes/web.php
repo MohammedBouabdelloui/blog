@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ControllerNavigation;
 use App\Http\Controllers\PostController;
 use App\Models\post;
@@ -23,7 +25,7 @@ Route::fallback(function(){
     return view('404');
 });
 
-Route::resource('/post' , PostController::class);
+
 
 Route::controller(ControllerNavigation::class)->group(function(){
     Route::get('/' , 'index')->name('index');
@@ -31,16 +33,33 @@ Route::controller(ControllerNavigation::class)->group(function(){
     Route::get('/author' , 'author')->name('author');
     Route::get('/about-me' , 'about')->name('about');
     Route::get('/login' , 'login');
-   
 });
 
-Route::get('/dashboard' , function(){
-    return view('admin.pages.dashboard');
-})->middleware('auth');
+
+Route::middleware(['auth' , 'Admin'])->group(function(){
+    Route::get('/dashboard' , function(){
+        return view('admin.pages.dashboard');
+    });
+});
+
+
+Route::get('/Forgot-Password' , function(){
+    return view('auth-forgot-password');
+})->name('Forgot_Password');
+
 
 Route::get('/login' , function(){
     return view('admin.pages.auth-login');
 })->name('login');
 
+Route::post('/login_user' ,[AuthorController::class , 'ligin'])->name('login_user');
+
+
 //Route::view('/post' , 'post-elements');
 Route::view('/sersh' , 'search-result');
+
+Route::resource('posts' , PostController::class);
+
+Route::get('posts/filter_posts/{id}' , [PostController::class , 'filter_posts'])->name('filter_posts');
+
+Route::resource('/category' ,  CategoryController::class);

@@ -47,7 +47,7 @@
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-white">
       <a class="navbar-brand order-1" href="index.html">
-        <img class="img-fluid" width="100px" src="images/logo.png"
+        <img class="img-fluid" width="100px" src="{{asset('images/logo.png')}}"
           alt="Reader | Hugo Personal Blog Template">
       </a>
       <div class="collapse navbar-collapse text-center order-lg-2 order-3" id="navigation">
@@ -120,16 +120,16 @@
       <h2 class="h3 mb-4">INSTAGRAM POST</h2>
       
       <div class="instagram-slider">
-        <div class="instagram-post"><img src="images/instagram/1.jpg"></div>
-        <div class="instagram-post"><img src="images/instagram/2.jpg"></div>
-        <div class="instagram-post"><img src="images/instagram/4.jpg"></div>
-        <div class="instagram-post"><img src="images/instagram/3.jpg"></div>
-        <div class="instagram-post"><img src="images/instagram/2.jpg"></div>
-        <div class="instagram-post"><img src="images/instagram/1.jpg"></div>
-        <div class="instagram-post"><img src="images/instagram/3.jpg"></div>
-        <div class="instagram-post"><img src="images/instagram/4.jpg"></div>
-        <div class="instagram-post"><img src="images/instagram/2.jpg"></div>
-        <div class="instagram-post"><img src="images/instagram/4.jpg"></div>
+        <div class="instagram-post"><img src="{{asset('images/instagram/1.jpg')}}"></div>
+        <div class="instagram-post"><img src="{{asset('images/instagram/2.jpg')}}"></div>
+        <div class="instagram-post"><img src="{{asset('images/instagram/4.jpg')}}"></div>
+        <div class="instagram-post"><img src="{{asset('images/instagram/3.jpg')}}"></div>
+        <div class="instagram-post"><img src="{{asset('images/instagram/2.jpg')}}"></div>
+        <div class="instagram-post"><img src="{{asset('images/instagram/1.jpg')}}"></div>
+        <div class="instagram-post"><img src="{{asset('images/instagram/3.jpg')}}"></div>
+        <div class="instagram-post"><img src="{{asset('images/instagram/4.jpg')}}"></div>
+        <div class="instagram-post"><img src="{{asset('images/instagram/2.jpg')}}"></div>
+        <div class="instagram-post"><img src="{{asset('images/instagram/4.jpg')}}"></div>
       </div>
   </div>
   

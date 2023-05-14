@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\category;
 use Illuminate\Http\Request;
 use App\Models\post;
 class ControllerNavigation extends Controller
@@ -10,8 +11,15 @@ class ControllerNavigation extends Controller
    
     public function index()
     {     
-        $posts = post::paginate(10);
-        return view('index' , compact('posts'));
+        $posts = post::paginate(6);
+        $categorys = category::get();
+        //$posts = post::whereBelongsTo($categorys)->get();
+        //$posts = post::where('categorie_id', $categorys->id)->paginate(10);
+        //$posts = $posts->category;
+        //$posts = $posts->category;
+        //$categorys = category::find(1)->posts(); 
+        return view('index' , compact('posts' , 'categorys'));
+        //dd($posts);
     }
 
     // In order to go to the contact page 
