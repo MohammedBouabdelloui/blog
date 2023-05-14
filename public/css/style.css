@@ -1529,3 +1529,24 @@ mark {
     --h: 100;
   }
 }
+.vh-100{
+  padding-top: 20rem;
+  place-items: center;
+  display: flex;
+  align-items: center;
+  z-index: -1;
+}
+
+/* sidebar style */
+
+a {
+  text-decoration: none;
+  -webkit-transition: all 0.6s ease;
+  -moz-transition: all 0.6s ease;
+  transition: all 0.6s ease;
+}
+a:hover {
+  -webkit-transition: all 0.6s ease;
+  -moz-transition: all 0.6s ease;
+  transition: all 0.6s ease;
+}

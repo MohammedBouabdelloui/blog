@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class author extends Model
 {
     use HasFactory;
+    protected $fillable=['name' , 'email' , 'rool' , 'photo_profile_path'];
 }

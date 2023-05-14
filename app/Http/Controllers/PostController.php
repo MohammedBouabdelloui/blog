@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\author;
+use App\Models\category;
 use App\Models\post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     /**
+     * 
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $posts = post::get();
-        return view('index' , compact('posts'));
+    {     
+        return redirect()->route('index');
     }
 
     /**
@@ -21,7 +23,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('create_post');
+        return view('admin.pages.create-poste');
     }
 
     /**
@@ -42,9 +44,10 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(post $post)
+    public function show($id)
     {
-        //
+        $posts = category::find($id)->posts;
+        return view('search-result' ,compact('posts'));
     }
 
     /**
@@ -52,8 +55,7 @@ class PostController extends Controller
      */
     public function edit($post_id)
     {
-        $post = post::findorFail($post_id);
-        return view('edit_post' ,compact('post'));
+        //
     }
 
     /**
@@ -79,4 +81,14 @@ class PostController extends Controller
     {
         
     }
-}
+
+     public function filter_posts($id){
+         $post = post::find($id);
+         if($post){
+             return view('post-elements' , compact('post'));
+         }else{
+            return view('404');
+         }
+     }
+    
+}  
